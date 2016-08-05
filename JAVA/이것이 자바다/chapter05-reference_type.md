@@ -22,16 +22,17 @@ JVM 스택 영역은 각 스레드마다 하나씩 존재하며 스레드가 시
 배열의 크기를 변경할 수 없기때문에 변경하려면 새로운 배열을 만든후 이전 배열을 복사해야 한다.
 
 - for문
-
-
-    for(int i=0; i<oldIntArray.length; i++) {
-      newIntArray[i] = oldIntArray[i];
-    }
+```java
+for(int i=0; i<oldIntArray.length; i++) {
+  newIntArray[i] = oldIntArray[i];
+}
+```
 
 - System.arraycopy() 메소드
-
-
-    System.arraycopy(원본 배열, 원본 시작 인덱스, 복사할 배열, 복사 시작 인덱스, 복사할 개수);
+```java
+// 원본 배열, 원본 시작 인덱스, 복사할 배열, 복사 시작 인덱스, 복사할 개수
+System.arraycopy(src, srcPos, dest, destPos, length);
+```
 
 ### 열거 타입
 열거 타입(enumeration type) - 한정된 값을 갖는 타입 (ex: 요일, 계절등)
@@ -41,6 +42,6 @@ PascalCase로 .java 파일 생성 (ex: Week.java, MemberGrade.java)
 
 - 열거 상수 선언  
 관례적으로 모두 대문자 사용, 띄어쓰기는 언더바
-
-
-    public enum Week { MONDAY, TUESDAY, WEDNESDAY... }
+```java
+public enum Week { MONDAY, TUESDAY, WEDNESDAY... }
+```
