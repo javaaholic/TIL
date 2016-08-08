@@ -1,5 +1,5 @@
-# 리눅스 및 mysql 설치
-가상머신 환경에 리눅스 및 mysql을 설치한 후 myql에서 host os와 guest os를 연결한다.
+# 리눅스 및 MySQL 설치
+목표: 가상머신 환경에 리눅스 및 mysql을 설치한 후 myql에서 host os와 guest os를 연결한다.
 
 ## 리눅스 설치 및 설정
 [생활코딩](https://opentutorials.org)에 virtualbox, 리눅스, mysql을 설치하는 방법이 자세히 나와 있다.
@@ -21,7 +21,7 @@
   - NAT - 인터넷 연결 O, host-guest 연결 X
   - 브릿지 - 인터넷 연결 O, host-guest 연결 O
 
-## mysql 설치 및 설정
+## MySQL 설치 및 설정
 우분투 터미널에서 다음 명령어를 입력한다.
 ```
 sudo apt-get install mysql-server mysql-client
@@ -70,31 +70,61 @@ guest os에 mysql을 설치하고 host os에서 접속하려고 하면 자신의
   $ mysqld --print-defaults
   ```
 
-- 테스트
+- 한글 설정
+
+```
+//my.cnf를 열어서 다음의 내용을 추가한다.
+sudo vi /etc/mysql/my.cnf
+
+[mysqld]
+datadir=/var/lib/mysql
+user=mysql
+character-set-server=utf8
+collation-server=utf8_general_ci
+init_connect = set collation_connection = utf8_general_ci
+init_connect = set names utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+default-character-set=utf8
+
+[client]
+default-character-set=utf8
+
+[mysqldump]
+default-character-set=utf8
+```
+
+- 테스트  
   마지막으로 host os에서 workbench를 이용해 테스트한다.
 
-## vi에디터
+## vi 에디터
 터미널에서 텍스트를 편집할때 vi에디터를 사용해야 한다. 아래는 간단한 사용법이다.
 
 vi에디터는 3가지 상태를 가진다.
-- 편집상태
+
+- 편집상태  
   이 상태에서는 입력을 할 수 있다. esc를 누르면 명령대기상태로 돌아간다.
 
-- 명령대기상태
+- 명령대기상태  
   여기에서는 입력을 제외한 여러 명령을 할 수 있다. i를 눌러서 커서 위치에서 삽입을 시작한다.
 
-- 명령줄상태
+- 명령줄상태  
   저장 및 종료를 할 수 있다. :를 누르고 q를 누르면 종료를 w를 누르면 저장된다. wq를 누르면 저장 및 종료된다.
 
 ## 포트포워딩
-공유기 설정에 들어가서 외부IP를 입력하면 원하는 내부IP로 설정한 포트를 통해 연결해줄 수 있다. 
+공유기 설정에 들어가서 외부IP를 입력하면 원하는 내부IP로 설정한 포트를 통해 연결해줄 수 있다.
 
 ## 참조
 - mysql 설치 및 설정
   - http://powerhan.tistory.com/31
   - http://jaesu.tistory.com/entry/ubuntu-mysql-설치-및-설정하기
   - https://support.rackspace.com/how-to/configuring-mysql-server-on-ubuntu/
-- vi 편집기 사용법
+- vi 에디터 사용법
   - http://yagi815.tistory.com/146
 - virtualbox 네트워크 설정
   - [생활코딩-virtualbox-네트워킹](https://opentutorials.org/course/173/1288)

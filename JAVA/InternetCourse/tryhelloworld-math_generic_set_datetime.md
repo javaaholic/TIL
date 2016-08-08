@@ -1,4 +1,4 @@
-[{*}helloworld](http://tryhelloworld.co.kr/)의 자바 중급 강의를 듣고 정리한 내용입니다.
+[{*}helloworld](http://tryhelloworld.co.kr/)의 자바 중급 강의를 듣고 정리한 내용이다.
 
 ## Math
 - 절대값, 사인, 코사인, 탄젠트, 제곱, 랜덤등 수학 계산을 할 때 사용
