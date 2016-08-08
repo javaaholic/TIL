@@ -1,5 +1,6 @@
 # 스프링 프로젝트 시작 환경
 [코드로 배우는 스프링 웹 프로젝트](http://book.naver.com/bookdb/book_detail.nhn?bid=9425458)를 보고 작성한 프로젝트 시작 환경이다.
+
 1. 스프링 프로젝트 생성
 2. JDK 설정
 3. pom.xml 수정
