@@ -1,10 +1,10 @@
 # Callback
 
-## 무엇?
+## 무엇인가?
 
 자바스크립트는 변수나 인자로 함수를 전달할 수 있다는 점을 이용한 패턴이다.
 
-## 구현 방법
+## 구현
 
 ``` javascript
 function ajax(method, url, data, callback) {
