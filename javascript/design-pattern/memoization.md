@@ -7,26 +7,20 @@
 ## 구현
 
 ``` javascript
-Function.prototype.memo = function () {
-  let _this = this, cache = {};
+Function.prototype.memoize = function () {
+  let _this = this, memo = {};
+
   return function (prop) {
-    if (cache.hasOwnProperty(prop)) {
-      return cache[prop];
+    let argsString = JSON.stringify(arguments);
+    
+    if (memo.hasOwnProperty(argsString)) {
+      return memo[argsString];
     }
 
-    let value = _this.call(this, prop);
-    cache[prop] = value;
-    return value;
+    let returnValue = _this.apply(this, arguments);
+    memo[argsString] = returnValue;
+    return returnValue;
   }
-}
-
-let itemlist = ['sword', 'boots', 'shield', 'hat'];
-
-function searchItem(idx) {
-  setTimeout(function () {
-    console.log(itemlist[idx]);
-    return itemlist[idx];
-  }, 5000);
 }
 ```
 
