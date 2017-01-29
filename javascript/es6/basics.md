@@ -47,7 +47,7 @@ console.log(arr2); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ## rest parameter
 
-rest parameter는 함수의 마지막 파라미터 앞에 "..."을 붙여 사용한다. 함수의 가변인자의 개수를 포착하는데 사용된다.
+rest parameter는 함수의 마지막 파라미터 앞에 "..."을 붙여 사용한다. 함수의 가변인자 개수를 알지 못할 때 사용한다.
 
 ``` javascript
 function print(...arr) {
@@ -55,4 +55,96 @@ function print(...arr) {
 }
 
 print(1, 2, 3, 4); // [1, 2, 3, 4]
+```
+
+## destructuring
+
+destructuring assignment는 이터러블이나 객체의 프로퍼티를 배열이나 객체 생성자 리터럴과 비슷한 구문으로 변수에 할당하는 표현식이다.
+
+### array destructuring
+
+이터러블 객체에서 값을 추출하여 변수에 할당한다.
+
+``` javascript
+let [a, b, c] = [1, 2, 3];
+console.log(a, b, c); // 1 2 3
+
+// rest operator를 사용할 수 있다.
+let [d, ...e] = [4, 5, 6, 7];
+console.log(d, e); // 4 [5, 6, 7]
+
+// 변수의 기본값을 지정할 수 있다.
+let [f, g = 100] = [];
+console.log(f, g); // undefined 100
+
+// 중첩 배열 해체
+let [h, [i, j]] = [[10], [11, 12]];
+console.log(h, i, j); // [10] 11 12
+
+// 파라미터로 배열 해체 할당 사용
+function printArr([a, b, c = 999]) {
+  console.log(a, b, c);
+}
+
+printArr([100, 101]); // 100 101 999
+```
+
+### object destructuring
+
+객체 프로퍼티 값을 추출해서 변수에 할당한다.
+
+``` javascript
+let {a, b} = { a: 1, b: 2 };
+console.log(a, b); // 1 2
+
+let { a: name, b: say } = { a: 'jin', b: 'hello' };
+console.log(name, say); // jin hello
+
+let { name, info: { sex: gender, age } } = { name: 'jin', info: { sex: '남', age: 27 } };
+console.log(name, gender, age); // jin 남 27
+
+function printObj({a, b, c = 100}) {
+  console.log(a, b, c);
+}
+
+printObj({ a: 1, b: 2 }); // 1 2 100
+```
+
+## Arrow Function
+
+=> 연산자로 익명함수를 생성한다.
+
+### 화살표 함수에서 this값
+
+화살표 함수 내부에서 this는 둘러싼 스코프의 this값을 참조한다.
+
+``` javascript
+let obj = {
+  func: function () {
+    console.log(this);
+    let func = () => {
+      console.log(this);
+    }
+    func();
+  }
+}
+
+obj.func(); // Object {}, Object {}
+```
+
+## 강화된 객체 리터럴
+
+``` javascript
+let name = 'jin', age = 27;
+let profile = { name, age };
+
+console.log(profile); // { name: 'jin', age: 27 }
+
+let obj = {
+  func() {
+    console.log(this);
+  }
+}
+
+obj.func(); // Object {}
 ```
