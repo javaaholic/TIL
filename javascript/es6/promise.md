@@ -47,3 +47,66 @@ executor 스코프에서 예외가 발생하거나 reject 콜백이 실행될 �
 ### setteled
 
 pending 상태가 아닌 fulfilled 또는 rejected 중 하나의 상태를 가지는 확정 상태다.
+
+![promise](./promises.png "출처: MDN")
+
+## Promise.prototype.then(onFulfilled, onRejected)
+
+이행되거나 거부된 후의 처리를 한다. onFulfilled, onRejected 2개의 콜백을 갖으며 이행된 경우에는 onFulfilled 콜백을, 거부된 경우에는 onRejected 콜백을 호출한다. onRejected 콜백은 executor 스코프에서 예외가 발생해도 호출된다. 콜백의 반환값으로 resolve되는 promise 객체 또는 새 promise 객체를 반환한다.
+
+``` javascript
+let promise = new Promise(function (resolve, reject) {
+  console.log('==== async start ====');
+  setTimeout(function () {
+    resolve('Hello');
+  }, Math.floor(Math.random() * 3000));
+});
+
+promise.then(function (value) {
+  console.log(`${value}, World!`);
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve('Bye');
+    }, Math.floor(Math.random() * 3000));
+  });
+}).then(function (value) {
+  console.log(`${value}, World!`);
+}).then(function () {
+  console.log('==== async end ====');
+});
+
+console.log('I am a sync code!');
+```
+
+## Promise.prototype.catch(onRejected)
+
+예외만 처리하고 싶을 때 사용한다. 마찬가지로 반환값으로 resolve되는 promise 객체 또는 새 promise 객체를 반환한다.
+
+``` javascript
+new Promise(function (resolve, reject) {
+  let randNum = Math.floor(Math.random() * 10);
+  console.log(`${randNum} selected`);
+  if (randNum < 3) {
+    reject('low number');
+  } else {
+    resolve(randNum);
+  }
+}).then(function (value) {
+  if (value > 6) {
+    throw 'high number';
+  }
+  console.log(`success! - ${value}`);  
+}, function (reason) {
+  console.log(`error1 msg: ${reason}`);
+}).catch(function (reason) {
+  console.log(`error2 msg: ${reason}`);
+});
+```
+
+## Promise.resolve(value)
+
+## Promise.reject(reason)
+
+## Promise.all(iterable)
+
+## Promise.race(iterable)
