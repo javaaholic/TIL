@@ -3,7 +3,7 @@
 ## 변수 선언
 
 ``` typescript
-let variable: type;
+let 변수명: 타입;
 ```
 
 ## 배열 타입

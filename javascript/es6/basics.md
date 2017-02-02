@@ -148,3 +148,16 @@ let obj = {
 
 obj.func(); // Object {}
 ```
+
+## Template String
+
+``` javascript
+let name = 'Jin';
+console.log(`Hello, ${name}!`); // Hello, Jin!
+
+// multi line
+console.log(`
+안녕하세요!
+2줄도 가능해요!
+`);
+```
