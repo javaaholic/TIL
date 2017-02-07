@@ -136,5 +136,19 @@ Promise.all([promise1, promise2]).then(function () {
 주어진 iterable 객체중 하나라도 이행될 떄 해당 resolved promise 객체를 반환하는 메소드이다.
 
 ``` javascript
+var promise1 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    resolve('promise1 call');
+  }, 2000);
+});
 
+var promise2 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    resolve('promise2 call');
+  }, Math.random() * 4000);
+});
+
+Promise.race([promise1, promise2]).then(function (value) {
+  console.log(value);
+});
 ```
