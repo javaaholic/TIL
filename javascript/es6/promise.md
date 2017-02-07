@@ -109,4 +109,32 @@ new Promise(function (resolve, reject) {
 
 ## Promise.all(iterable)
 
+주어진 iterable 객체가 모두 이행될 때 resolved promise 객체를 반환하는 메소드이다.
+
+``` javascript
+var promise1 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    console.log('promise1 call');
+    resolve();
+  }, 2000);
+});
+
+var promise2 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    console.log('promise2 call');
+    resolve();
+  }, 3000);
+});
+
+Promise.all([promise1, promise2]).then(function () {
+  console.log('complete'); // 3초 후에 출력
+});
+```
+
 ## Promise.race(iterable)
+
+주어진 iterable 객체중 하나라도 이행될 떄 해당 resolved promise 객체를 반환하는 메소드이다.
+
+``` javascript
+
+```
