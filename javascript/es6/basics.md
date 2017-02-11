@@ -132,7 +132,7 @@ let obj = {
 obj.func(); // Object {}, Object {}
 ```
 
-## 강화된 객체 리터럴
+## 강화된 객체 표현식
 
 ``` javascript
 let name = 'jin', age = 27;
