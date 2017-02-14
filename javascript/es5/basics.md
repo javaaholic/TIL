@@ -63,7 +63,7 @@ Number, parseInt, parseFloat 함수를 이용해서 다른 타입을 number 타�
 ### string 타입
 16비트 유니코드 문자의 연속으로 된 문자열이다.
 
-**문자열로 변환**
+**문자열 변환**  
 toString 메소드를 이용해서 문자열로 변환할 수 있다. null이나 undefined는 String 함수를 이용해서 문자열로 변환할 수 있다.
 
 ### 객체 타입
